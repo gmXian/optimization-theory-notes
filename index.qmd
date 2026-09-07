@@ -1,0 +1,89 @@
+---
+title: "优化理论学习笔记"
+subtitle: "以 Mathematical Programming 为主线的中文独立学习资料"
+page-layout: full
+toc: false
+---
+
+::: {.home-intro}
+
+这套笔记围绕“建模—线性规划—对偶—网络优化—凸分析—数值优化”逐步展开。所有定义、符号、推导、例题和习题解答都以**脱离教材也能独立学习**为目标。
+
+$$
+\min_{x\in\Omega} f(x)
+\qquad\Longrightarrow\qquad
+\text{建模、结构、算法与最优性}
+$$
+
+::: {.home-actions}
+[从学习指南开始](STUDY_GUIDE.md){.btn .btn-primary}
+[查看学习进度](学习进度.md){.btn .btn-outline-primary}
+[检索全部习题](EXERCISE_INDEX.md){.btn .btn-outline-primary}
+:::
+
+:::
+
+## 推荐学习路线
+
+::: {.chapter-grid}
+
+::: {.chapter-card}
+### 01 · 数学规划入门
+
+认识决策变量、目标函数、约束、可行域与局部/全局最优。
+
+[学习讲义](01_An_Introduction_to_Mathematical_Programming/01_中文笔记.md) · [习题答案](01_An_Introduction_to_Mathematical_Programming/02_习题与答案_中英双语.md)
+:::
+
+::: {.chapter-card}
+### 02 · 线性代数与凸几何
+
+从子空间、仿射集和凸集走向 LP 极点与基本可行解。
+
+[学习讲义](02_Subspaces_Matrices_Affine_Sets_Cones_Convex_Sets_and_the_Linear_Programming_Problem/01_中文笔记.md) · [习题答案](02_Subspaces_Matrices_Affine_Sets_Cones_Convex_Sets_and_the_Linear_Programming_Problem/02_习题与答案_中英双语.md)
+:::
+
+::: {.chapter-card}
+### 03–05 · 单纯形法与对偶
+
+系统掌握 primal simplex、duality、dual simplex 与其他单纯形过程。
+
+[进入 Chapter 3](03_The_Primal_Simplex_Procedure/01_中文笔记.md) · [进入 Chapter 4](04_Duality_and_the_Linear_Complementarity_Problem/01_中文笔记.md)
+:::
+
+::: {.chapter-card}
+### 06 · 网络优化
+
+学习最小费用流、最大流、最短路、网络单纯形与指派问题。
+
+[学习讲义](06_Network_Programming/01_中文笔记.md) · [习题答案](06_Network_Programming/02_习题与答案_中英双语.md)
+:::
+
+::: {.chapter-card}
+### 07–08 · 凸分析与最优性
+
+理解凸函数、方向导数、Hessian、Lagrange 条件与 KKT 条件。
+
+[进入 Chapter 7](07_Convex_and_Concave_Functions/01_中文笔记.md) · [进入 Chapter 8](08_Optimality_Conditions/01_中文笔记.md)
+:::
+
+::: {.chapter-card}
+### 09–10 · 数值优化与罚函数
+
+学习一维搜索、最速下降、共轭梯度、罚函数、障碍函数与乘子法。
+
+[进入 Chapter 9](09_Search_Techniques_for_Unconstrained_Optimization_Problems/01_中文笔记.md) · [进入 Chapter 10](10_Penalty_Function_Methods/01_中文笔记.md)
+:::
+
+:::
+
+## 使用方法
+
+1. 每章先读“学习目标”和“前置知识”，再沿定义—定理—算法—例题的主线学习。
+2. 遇到教材编号 Example 时先遮住解答，自己完成建模或推导。
+3. 进入习题页后先读题和解题思路；页面提供折叠答案时，网站会记住本设备上的展开偏好。
+4. 一周后使用“一页速记”和代表性习题完成复习。
+
+::: {.callout-important title="公开版说明"}
+本站不提供原教材 PDF。公开内容以原创中文讲解、数学重述、原创解答和教学重绘图为主；教材页码仅用于学习追溯。详见[公开发布原则](PUBLICATION_POLICY.md)与[图片审计](IMAGE_AUDIT.md)。
+:::

@@ -1,0 +1,26 @@
+name: Validate Markdown
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+          cache: pip
+      - name: Install validation dependencies
+        run: python -m pip install -r requirements-tools.txt
+      - name: Basic Markdown validation
+        run: python tools/validate_repo.py
+      - name: Coverage and bilingual review checks
+        run: python tools/review_repo.py
+      - name: Quarto source structure checks
+        run: python tools/validate_quarto_structure.py

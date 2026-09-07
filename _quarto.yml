@@ -1,0 +1,112 @@
+project:
+  type: book
+  output-dir: _book
+  render:
+    - index.qmd
+    - STUDY_GUIDE.md
+    - PREREQUISITES.md
+    - SYMBOLS_AND_TERMS.md
+    - 学习进度.md
+    - 01_An_Introduction_to_Mathematical_Programming/01_中文笔记.md
+    - 01_An_Introduction_to_Mathematical_Programming/02_习题与答案_中英双语.md
+    - 02_Subspaces_Matrices_Affine_Sets_Cones_Convex_Sets_and_the_Linear_Programming_Problem/01_中文笔记.md
+    - 02_Subspaces_Matrices_Affine_Sets_Cones_Convex_Sets_and_the_Linear_Programming_Problem/02_习题与答案_中英双语.md
+    - 03_The_Primal_Simplex_Procedure/01_中文笔记.md
+    - 03_The_Primal_Simplex_Procedure/02_习题与答案_中英双语.md
+    - 04_Duality_and_the_Linear_Complementarity_Problem/01_中文笔记.md
+    - 04_Duality_and_the_Linear_Complementarity_Problem/02_习题与答案_中英双语.md
+    - 05_Other_Simplex_Procedures/01_中文笔记.md
+    - 05_Other_Simplex_Procedures/02_习题与答案_中英双语.md
+    - 06_Network_Programming/01_中文笔记.md
+    - 06_Network_Programming/02_习题与答案_中英双语.md
+    - 07_Convex_and_Concave_Functions/01_中文笔记.md
+    - 07_Convex_and_Concave_Functions/02_习题与答案_中英双语.md
+    - 08_Optimality_Conditions/01_中文笔记.md
+    - 08_Optimality_Conditions/02_习题与答案_中英双语.md
+    - 09_Search_Techniques_for_Unconstrained_Optimization_Problems/01_中文笔记.md
+    - 09_Search_Techniques_for_Unconstrained_Optimization_Problems/02_习题与答案_中英双语.md
+    - 10_Penalty_Function_Methods/01_中文笔记.md
+    - 10_Penalty_Function_Methods/02_习题与答案_中英双语.md
+    - EXERCISE_INDEX.md
+    - BOOK_AUDIT.md
+    - MISSING_PAGES.md
+    - PAGE_MAP.md
+    - FULL_BOOK_REVIEW_REPORT.md
+    - SELF_CONTAINED_NOTE_STANDARD.md
+    - FORMATTING_GUIDE.md
+    - IMAGE_AUDIT.md
+    - PUBLICATION_POLICY.md
+
+lang: zh
+
+book:
+  title: "优化理论学习笔记"
+  subtitle: "Mathematical Programming · 独立学习版"
+  search: true
+  page-navigation: true
+  chapters:
+    - index.qmd
+    - part: "学习准备"
+      chapters:
+        - STUDY_GUIDE.md
+        - PREREQUISITES.md
+        - SYMBOLS_AND_TERMS.md
+        - 学习进度.md
+    - part: "第一部分 · 数学规划与线性规划基础"
+      chapters:
+        - 01_An_Introduction_to_Mathematical_Programming/01_中文笔记.md
+        - 01_An_Introduction_to_Mathematical_Programming/02_习题与答案_中英双语.md
+        - 02_Subspaces_Matrices_Affine_Sets_Cones_Convex_Sets_and_the_Linear_Programming_Problem/01_中文笔记.md
+        - 02_Subspaces_Matrices_Affine_Sets_Cones_Convex_Sets_and_the_Linear_Programming_Problem/02_习题与答案_中英双语.md
+    - part: "第二部分 · 单纯形法与对偶理论"
+      chapters:
+        - 03_The_Primal_Simplex_Procedure/01_中文笔记.md
+        - 03_The_Primal_Simplex_Procedure/02_习题与答案_中英双语.md
+        - 04_Duality_and_the_Linear_Complementarity_Problem/01_中文笔记.md
+        - 04_Duality_and_the_Linear_Complementarity_Problem/02_习题与答案_中英双语.md
+        - 05_Other_Simplex_Procedures/01_中文笔记.md
+        - 05_Other_Simplex_Procedures/02_习题与答案_中英双语.md
+    - part: "第三部分 · 网络优化"
+      chapters:
+        - 06_Network_Programming/01_中文笔记.md
+        - 06_Network_Programming/02_习题与答案_中英双语.md
+    - part: "第四部分 · 凸分析与最优性条件"
+      chapters:
+        - 07_Convex_and_Concave_Functions/01_中文笔记.md
+        - 07_Convex_and_Concave_Functions/02_习题与答案_中英双语.md
+        - 08_Optimality_Conditions/01_中文笔记.md
+        - 08_Optimality_Conditions/02_习题与答案_中英双语.md
+    - part: "第五部分 · 数值优化与约束处理"
+      chapters:
+        - 09_Search_Techniques_for_Unconstrained_Optimization_Problems/01_中文笔记.md
+        - 09_Search_Techniques_for_Unconstrained_Optimization_Problems/02_习题与答案_中英双语.md
+        - 10_Penalty_Function_Methods/01_中文笔记.md
+        - 10_Penalty_Function_Methods/02_习题与答案_中英双语.md
+  appendices:
+    - EXERCISE_INDEX.md
+    - BOOK_AUDIT.md
+    - MISSING_PAGES.md
+    - PAGE_MAP.md
+    - FULL_BOOK_REVIEW_REPORT.md
+    - SELF_CONTAINED_NOTE_STANDARD.md
+    - FORMATTING_GUIDE.md
+    - IMAGE_AUDIT.md
+    - PUBLICATION_POLICY.md
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles.scss
+    toc: true
+    toc-depth: 3
+    toc-title: "本页目录"
+    number-sections: false
+    anchor-sections: true
+    smooth-scroll: true
+    code-copy: true
+    code-overflow: wrap
+    html-math-method: mathjax
+    fig-align: center
+    fig-responsive: true
+    include-after-body: assets/site.html

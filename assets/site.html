@@ -1,0 +1,150 @@
+<script>
+(() => {
+  const ready = (fn) => {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn, { once: true });
+    } else {
+      fn();
+    }
+  };
+
+  ready(() => {
+    const main = document.querySelector("main.content");
+    if (!main) return;
+
+    const progress = document.createElement("div");
+    progress.className = "reading-progress";
+    progress.setAttribute("aria-hidden", "true");
+    document.body.append(progress);
+
+    const updateProgress = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0;
+      progress.style.width = `${ratio * 100}%`;
+    };
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+
+    const labelRules = [
+      [/^(教材主线|教材推导|教材结论)/, "study-textbook"],
+      [/^(学习补充|补充例子|实践建议)/, "study-supplement"],
+      [/^(易错点|注意|警告)/, "study-warning"],
+      [/^(直观理解|小白解释|为什么重要|一句话)/, "study-intuition"],
+      [/^(证明导航|证明思路|关键推导)/, "study-proof"]
+    ];
+
+    main.querySelectorAll("p").forEach((paragraph) => {
+      const strong = paragraph.querySelector(":scope > strong:first-child");
+      if (!strong) return;
+      const text = strong.textContent.trim();
+      const match = labelRules.find(([pattern]) => pattern.test(text));
+      if (!match) return;
+      paragraph.classList.add("study-label", match[1]);
+    });
+
+    const decodedPath = decodeURIComponent(window.location.pathname);
+    const noteName = "01_中文笔记.html";
+    const exerciseName = "02_习题与答案_中英双语.html";
+    if (decodedPath.endsWith(noteName) || decodedPath.endsWith(exerciseName)) {
+      const currentIsNote = decodedPath.endsWith(noteName);
+      const switcher = document.createElement("nav");
+      switcher.className = "chapter-switcher";
+      switcher.setAttribute("aria-label", "本章内容切换");
+
+      const noteLink = document.createElement("a");
+      noteLink.href = currentIsNote ? "#" : noteName;
+      noteLink.textContent = "学习讲义";
+      if (currentIsNote) noteLink.setAttribute("aria-current", "page");
+
+      const exerciseLink = document.createElement("a");
+      exerciseLink.href = currentIsNote ? exerciseName : "#";
+      exerciseLink.textContent = "习题与答案";
+      if (!currentIsNote) exerciseLink.setAttribute("aria-current", "page");
+
+      switcher.append(noteLink, exerciseLink);
+      const titleBlock = main.querySelector("#title-block-header");
+      if (titleBlock) titleBlock.insertAdjacentElement("afterend", switcher);
+      else main.prepend(switcher);
+    }
+
+    const pageTitle = main.querySelector("h1")?.textContent || document.title;
+    const isExercisePage = /(习题|Exercises?)/i.test(pageTitle);
+    if (isExercisePage) {
+      const answerPattern = /^(中文详细解答|中文解答|解答|English\s+(solution|answer|final answer|concise answer|final answers))/i;
+      const headings = [...main.querySelectorAll("h2, h3, h4, h5")]
+        .filter((heading) => answerPattern.test(heading.textContent.trim()));
+
+      headings.forEach((heading) => {
+        if (!heading.isConnected) return;
+        const level = Number(heading.tagName.slice(1));
+        const details = document.createElement("details");
+        details.className = "answer-block";
+        if (heading.id) details.id = heading.id;
+        const summary = document.createElement("summary");
+        summary.textContent = `${heading.textContent.trim()}（点击展开）`;
+        details.append(summary);
+
+        let sibling = heading.nextElementSibling;
+        while (sibling) {
+          const next = sibling.nextElementSibling;
+          const siblingLevel = /^H[1-6]$/.test(sibling.tagName)
+            ? Number(sibling.tagName.slice(1))
+            : 99;
+          if (siblingLevel <= level) break;
+          details.append(sibling);
+          sibling = next;
+        }
+        heading.replaceWith(details);
+      });
+
+      const blocks = [...main.querySelectorAll("details.answer-block")];
+      if (blocks.length) {
+        const preferenceKey = "optimization-notes-answer-preference";
+        let savedPreference = null;
+        try {
+          savedPreference = window.localStorage.getItem(preferenceKey);
+        } catch (_) {
+          // Browsers with blocked storage still get fully functional controls.
+        }
+        if (savedPreference === "open") {
+          blocks.forEach((block) => { block.open = true; });
+        }
+
+        const tools = document.createElement("div");
+        tools.className = "exercise-tools";
+        const hint = document.createElement("span");
+        hint.textContent = `本页共有 ${blocks.length} 个可折叠答案区，建议先独立作答。`;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "btn btn-sm btn-outline-primary";
+        button.textContent = savedPreference === "open" ? "折叠全部答案" : "展开全部答案";
+        button.addEventListener("click", () => {
+          const shouldOpen = blocks.some((block) => !block.open);
+          blocks.forEach((block) => { block.open = shouldOpen; });
+          button.textContent = shouldOpen ? "折叠全部答案" : "展开全部答案";
+          try {
+            window.localStorage.setItem(preferenceKey, shouldOpen ? "open" : "closed");
+          } catch (_) {
+            // Keep the current-page interaction when storage is unavailable.
+          }
+        });
+        tools.append(hint, button);
+        const switcher = main.querySelector(".chapter-switcher");
+        if (switcher) switcher.insertAdjacentElement("afterend", tools);
+        else main.prepend(tools);
+      }
+    }
+
+    const revealHashTarget = () => {
+      if (!window.location.hash) return;
+      const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+      if (!target) return;
+      if (target.matches("details")) target.open = true;
+      target.closest("details")?.setAttribute("open", "");
+    };
+    revealHashTarget();
+    window.addEventListener("hashchange", revealHashTarget);
+  });
+})();
+</script>

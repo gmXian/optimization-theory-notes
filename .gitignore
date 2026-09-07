@@ -1,0 +1,9 @@
+/.quarto/
+/_book/
+/site_libs/
+*_files/
+*.html
+!assets/site.html
+/.DS_Store
+
+**/*.quarto_ipynb
